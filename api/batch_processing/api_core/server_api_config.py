@@ -11,14 +11,14 @@ import os
 #%% instance-specific API settings
 # you likely need to modify these when deploying a new instance of the API
 
-API_INSTANCE_NAME = 'cm'  # 'internal', 'cm', 'camelot', 'zooniverse'
-POOL_ID = 'cm_1'  # name of the Batch pool created for this API instance
+API_INSTANCE_NAME = 'camelot'  # 'internal', 'cm', 'camelot', 'zooniverse'
+POOL_ID = 'camelot_0'  # name of the Batch pool created for this API instance
 
 MAX_NUMBER_IMAGES_ACCEPTED_PER_JOB = 4 * 1000 * 1000  # inclusive
 
 # Azure Batch for batch processing
-BATCH_ACCOUNT_NAME = 'cameratrapssc'
-BATCH_ACCOUNT_URL = 'https://cameratrapssc.southcentralus.batch.azure.com'
+BATCH_ACCOUNT_NAME = 'camelotbatch'
+BATCH_ACCOUNT_URL = 'https://camelotbatchtest.southcentralus.batch.azure.com'
 
 
 #%% general API settings
@@ -73,26 +73,26 @@ NUM_TASKS_PER_RESUBMISSION = 5
 #%% env variables for service credentials, and info related to these services
 
 # Cosmos DB `batch-api-jobs` table for job status
-COSMOS_ENDPOINT = os.environ['COSMOS_ENDPOINT']
-COSMOS_WRITE_KEY = os.environ['COSMOS_WRITE_KEY']
+COSMOS_ENDPOINT = os.environ['MEGADETECTOR_BATCH_PROECSSOR_COSMOS_SQL_ENDPOINT']
+COSMOS_WRITE_KEY = os.environ['MEGADETECTOR_BATCH_PROECSSOR_COSMOS_SQL_WRITE_KEY']
 
 # Service principal of this "application", authorized to use Azure Batch
-APP_TENANT_ID = os.environ['APP_TENANT_ID']
-APP_CLIENT_ID = os.environ['APP_CLIENT_ID']
-APP_CLIENT_SECRET = os.environ['APP_CLIENT_SECRET']
+APP_TENANT_ID = os.environ['MEGADETECTOR_BATCH_PROCESSOR_AZURE_TENANT_ID']
+APP_CLIENT_ID = os.environ['MEGADETECTOR_BATCH_PROCESSOR_AZURE_CLIENT_ID']
+APP_CLIENT_SECRET = os.environ['MEGADETECTOR_BATCH_PROCESSOR_AZURE_CLIENT_SECRET']
 
 # Blob storage account for storing Batch tasks' outputs and scoring script
-STORAGE_ACCOUNT_NAME = os.environ['STORAGE_ACCOUNT_NAME']
-STORAGE_ACCOUNT_KEY = os.environ['STORAGE_ACCOUNT_KEY']
+STORAGE_ACCOUNT_NAME = os.environ['MEGADETECTOR_BATCH_PROCESSOR_STORAGE_ACCOUNT_NAME']
+STORAGE_ACCOUNT_KEY = os.environ['MEGADETECTOR_BATCH_PROCESSOR_STORAGE_ACCOUNT_KEY']
 
-# STORAGE_CONTAINER_MODELS = 'models'  # names of the two containers supporting Batch
+STORAGE_CONTAINER_MODELS = 'models'  # names of the two containers supporting Batch
 STORAGE_CONTAINER_API = 'batch-api'
 
 # Azure Container Registry for Docker image used by our Batch node pools
-REGISTRY_SERVER = os.environ['REGISTRY_SERVER']
-REGISTRY_PASSWORD = os.environ['REGISTRY_PASSWORD']
-CONTAINER_IMAGE_NAME = 'cameratracrsppftkje.azurecr.io/tensorflow:1.14.0-gpu-py3'
+REGISTRY_SERVER = os.environ['MEGADETECTOR_BATCH_PROCESSOR_CONTAINER_REGISTRY_SERVER']
+REGISTRY_PASSWORD = os.environ['MEGADETECTOR_BATCH_PROCESSOR_CONTAINER_REGISTRY_PASSWORD']
+CONTAINER_IMAGE_NAME = os.environ['MEGADETECTOR_BATCH_PROCESSOR_CONTAINER_IMAGE_NAME']
 
 # Azure App Configuration instance to get configurations specific to
 # this instance of the API
-APP_CONFIG_CONNECTION_STR = os.environ['APP_CONFIG_CONNECTION_STR']
+APP_CONFIG_CONNECTION_STR = os.environ['MEGADETECTOR_BATCH_PROCESSOR_APP_CONFIG_CONNECTION_STR']

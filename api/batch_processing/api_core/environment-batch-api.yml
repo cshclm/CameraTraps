@@ -11,8 +11,9 @@ dependencies:
 - nb_conda_kernels
 - humanfriendly
 - requests
-- flask>=1.1.0  # known-compatible Flask 1.1.2, Werkzeug 1.0.1
+- flask=1.1.4  # known-compatible Flask 1.1.2, Werkzeug 1.0.1
 - gunicorn
+- jinja2=3.0.3
 - tqdm  # required by sas_blob_utils.py
 - pip
 - pip:
